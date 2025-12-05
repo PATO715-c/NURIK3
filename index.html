@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 5 Assignment</title>
+    <style>
+        /* ===== CSS ===== */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        #specials-tile {
+            display: inline-block;
+            padding: 20px 40px;
+            background-color: #2196F3;
+            color: white;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        #specials-tile:hover {
+            background-color: #1976D2;
+        }
+
+        #category-output {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            min-height: 50px;
+        }
+
+        #logo {
+            display: inline-block;
+            margin-bottom: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #eee;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Restaurant Menu - Module 5 Assignment</h1>
+    </header>
+
+    <main>
+        <div id="logo">🏠 Restaurant Logo (Click to go Home)</div>
+        <div id="specials-tile">Specials</div>
+
+        <div id="category-output">
+            Click the Specials tile to see a random category.
+        </div>
+
+        <!-- Симуляция home-snippet.html -->
+        <div id="home-snippet-container"></div>
+    </main>
+
+    <footer>
+        <p>Created by Your Name</p>
+    </footer>
+
+    <script>
+        // ===== JS =====
+        const categories = [
+            "Appetizers",
+            "Entrees",
+            "Desserts",
+            "Drinks",
+            "Salads",
+            "Soups"
+        ];
+
+        const outputDiv = document.getElementById("category-output");
+        const specialsTile = document.getElementById("specials-tile");
+        const logo = document.getElementById("logo");
+        const homeContainer = document.getElementById("home-snippet-container");
+
+        // Показ случайной категории
+        function showRandomCategory() {
+            const randomIndex = Math.floor(Math.random() * categories.length);
+            const category = categories[randomIndex];
+            outputDiv.textContent = `Random category: ${category}`;
+            homeContainer.innerHTML = ""; // Скрываем home snippet
+        }
+
+        // Возвращение на home
+        function goHome() {
+            outputDiv.textContent = "Click the Specials tile to see a random category.";
+
+            // Имитируем home-snippet.html
+            homeContainer.innerHTML = `
+                <h2>Welcome to Our Restaurant!</h2>
+                <p>This is the home page content.</p>
+                <ul>
+                    <li>Specials</li>
+                    <li>Menu</li>
+                    <li>Contact</li>
+                </ul>
+            `;
+        }
+
+        // События
+        specialsTile.addEventListener("click", showRandomCategory);
+        logo.addEventListener("click", goHome);
+
+        // При загрузке страницы сразу показываем home
+        goHome();
+    </script>
+</body>
+</html>
